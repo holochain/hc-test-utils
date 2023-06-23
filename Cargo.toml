@@ -1,0 +1,13 @@
+[workspace]
+resolver = "2"
+
+members = [
+  "crates/taskgroup_manager",
+  "crates/holochain_env_setup",
+]
+
+[profile.dev]
+opt-level = "z"
+
+[profile.release]
+opt-level = "z"
