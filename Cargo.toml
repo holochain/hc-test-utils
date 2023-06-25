@@ -2,8 +2,7 @@
 resolver = "2"
 
 members = [
-  "crates/taskgroup_manager",
-  "crates/holochain_env_setup",
+  "crates/hc_test_utils",
 ]
 
 [profile.dev]
