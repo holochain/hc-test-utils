@@ -10,7 +10,7 @@ use std::{
     path::{Path, PathBuf},
     process::{Command, Stdio},
 };
-use taskgroup_manager::kill_on_drop::{kill_on_drop, KillChildOnDrop};
+use super::kill_on_drop::{kill_on_drop, KillChildOnDrop};
 
 pub fn get_tmp_dir() -> PathBuf {
     std::env::current_dir().unwrap().join("tmp")

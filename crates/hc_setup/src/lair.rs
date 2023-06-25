@@ -11,7 +11,7 @@ use lair_keystore_api::prelude::{
     LairServerConfigInner as LairConfig, LairServerSignatureFallback,
 };
 use snafu::{ResultExt, Snafu};
-use taskgroup_manager::kill_on_drop::{kill_on_drop, KillChildOnDrop};
+use super::kill_on_drop::{kill_on_drop, KillChildOnDrop};
 
 pub async fn spawn(
     tmp_dir: &Path,
