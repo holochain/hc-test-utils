@@ -1,10 +1,9 @@
 [package]
 name = "holochain_env_setup"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 
 [dependencies]
-tokio = { version = "1.12.0", features = ["rt-multi-thread", "macros"] }
 reqwest = { version = "0.11.14", features = ["json"] }
 anyhow = "1.0"
 one_err = "0.0.8"
