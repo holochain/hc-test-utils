@@ -20,7 +20,7 @@ dotenv = "0.15.0"
 tempfile = "3.1"
 chrono = "0.4.0"
 sodoken = "0.0.9"
-holochain_keystore = "0.2.0"
+holochain_keystore = "0.2.1"
 lair_keystore_api = "0.2.4" # run lair-keystore --version in nix-shell to get the current version
 taskgroup_manager = { path = "../taskgroup_manager" }
 
