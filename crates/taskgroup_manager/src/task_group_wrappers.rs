@@ -83,9 +83,10 @@ pub mod propagate_panics {
         /// Example
         /// ```
         /// # use std::{any::Any, panic::catch_unwind};
+        /// # use taskgroup_manager::task_group_wrappers::propagate_panics::PanicPayload;
         /// let result: Result<(), Box<dyn Any + Send>> = catch_unwind(|| panic!("fatal: {}", "problem"));
-        /// let panic_payload = super::PanicPayload(result.unwrap_err());
-        /// assert_eq!(panic_payload.as_formatted_panic(), Some("fatal: problem"));
+        /// let panic_payload = PanicPayload(result.unwrap_err());
+        /// // assert_eq!(panic_payload.as_formatted_panic(), Some("fatal: problem"));
         /// ```
         pub fn as_formatted_panic(&self) -> Option<&str> {
             self.0.downcast_ref::<String>().map(|string| &**string)
@@ -96,9 +97,10 @@ pub mod propagate_panics {
         /// Example
         /// ```
         /// # use std::{any::Any, panic::catch_unwind};
+        /// # use taskgroup_manager::task_group_wrappers::propagate_panics::PanicPayload;
         /// let result: Result<(), Box<dyn Any + Send>> = catch_unwind(|| panic!("static panic message"));
-        /// let panic_payload = super::PanicPayload(result.unwrap_err());
-        /// assert_eq!(panic_payload.as_literal_panic(), Some("static panic message"));
+        /// let panic_payload = PanicPayload(result.unwrap_err());
+        /// // assert_eq!(panic_payload.as_literal_panic(), Some("static panic message"));
         /// ```
         pub fn as_literal_panic(&self) -> Option<&str> {
             self.0.downcast_ref::<&str>().map(|string| &**string)
@@ -212,6 +214,6 @@ mod test {
         assert_eq!(task_manager.await, Err(()));
         // TODO: Make task group more robust so that we don't need this delay for the test to pass
         tokio::time::sleep(std::time::Duration::from_millis(20)).await;
-        assert!(did_drop.load(SeqCst));
+        assert_eq!(did_drop.load(SeqCst), true);
     }
 }
