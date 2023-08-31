@@ -13,7 +13,9 @@ use std::{
 use taskgroup_manager::kill_on_drop::{kill_on_drop, KillChildOnDrop};
 
 pub fn get_tmp_dir() -> PathBuf {
-    std::env::current_dir().unwrap().join("tmp")
+    let dir = std::env::temp_dir();
+    println!("Temporary directory: {}", dir.display());
+    dir
 }
 
 pub fn create_tmp_dir() -> PathBuf {
@@ -28,12 +30,9 @@ pub fn create_tmp_dir() -> PathBuf {
 }
 
 pub fn create_log_dir() -> PathBuf {
-    let log_dir = std::env::current_dir()
-        .unwrap()
-        .join("logs")
-        .join(chrono::Local::now().to_rfc3339());
-    std::fs::create_dir_all(&log_dir).unwrap();
-    log_dir
+    let dir = std::env::temp_dir();
+    println!("Temporary directory for logs: {}", dir.display());
+    dir
 }
 
 pub fn spawn_holochain(
