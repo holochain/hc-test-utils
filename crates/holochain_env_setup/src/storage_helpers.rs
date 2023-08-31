@@ -8,7 +8,6 @@ use tracing::debug;
 use url::Url;
 
 pub async fn download_file(url: &Url) -> Result<PathBuf> {
-    use isahc::config::Configurable;
     use isahc::config::RedirectPolicy;
     use isahc::prelude::*;
     use isahc::HttpClient;

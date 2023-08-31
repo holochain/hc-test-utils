@@ -88,7 +88,7 @@ fn init_lair(lair_dir: &Path, log: File) -> Result<(), InitLairError> {
     let mut lair_init = kill_on_drop(
         Command::new("lair-keystore")
             .arg("--lair-root")
-            .arg(&lair_dir)
+            .arg(lair_dir)
             .arg("init")
             .arg("--piped")
             .stdin(process::Stdio::piped())
@@ -124,7 +124,7 @@ fn spawn_lair_server(lair_dir: &Path, log: File) -> Result<KillChildOnDrop, Spaw
     let mut lair = kill_on_drop(
         Command::new("lair-keystore")
             .arg("--lair-root")
-            .arg(&lair_dir)
+            .arg(lair_dir)
             .arg("server")
             .arg("--piped")
             .stdin(process::Stdio::piped())
@@ -150,7 +150,7 @@ fn wait_for_ready_string(child: &mut KillChildOnDrop) -> Result<(), io::Error> {
 }
 
 fn read_lair_config(path: &Path) -> Result<LairConfig, ReadConfigError> {
-    let file = File::open(&path).with_context(|_error| OpenSnafu {
+    let file = File::open(path).with_context(|_error| OpenSnafu {
         path: path.to_owned(),
     })?;
     serde_yaml::from_reader(file).context(ParseSnafu)
@@ -171,7 +171,7 @@ fn write_lair_config(path: PathBuf, config: &LairConfig) -> Result<(), WriteConf
     let file = std::fs::OpenOptions::new()
         .write(true)
         .truncate(true)
-        .open(&path)
+        .open(path)
         .context(TruncateConfigFileSnafu)?;
     serde_yaml::to_writer(file, &config).context(WriteConfigFileSnafu)
 }
