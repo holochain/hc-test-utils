@@ -212,6 +212,6 @@ mod test {
         assert_eq!(task_manager.await, Err(()));
         // TODO: Make task group more robust so that we don't need this delay for the test to pass
         tokio::time::sleep(std::time::Duration::from_millis(20)).await;
-        assert_eq!(did_drop.load(SeqCst), true);
+        assert!(did_drop.load(SeqCst));
     }
 }
