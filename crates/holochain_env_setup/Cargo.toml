@@ -4,12 +4,12 @@ version = "0.1.1"
 edition = "2021"
 
 [dependencies]
-reqwest = { version = "0.11.14", features = ["json"] }
 anyhow = "1.0"
 one_err = "0.0.8"
 url = "2.2"
 log = "0.4.17"
-tracing = { version = "0.1", features = ["attributes"] }
+holochain_keystore = "=0.2.2-beta-rc.1"
+lair_keystore_api = "0.3.0"
 lazy_static = "1"
 isahc = "1.7.2"
 snafu = "0.7.4"
@@ -19,8 +19,6 @@ dotenv = "0.15.0"
 tempfile = "3.1"
 chrono = "0.4.0"
 sodoken = "0.0.9"
-holochain_keystore = "0.2.1"
-# lair_keystore_api = "0.2.4" # run lair-keystore --version in nix-shell to get the current version
-lair_keystore_api = { git = "https://github.com/holochain/lair", rev = "e9453a30981fc681d4313cd3e1f7b98953c558e3" }
+reqwest = { version = "0.11.14", features = ["json"] }
+tracing = { version = "0.1", features = ["attributes"] }
 taskgroup_manager = { path = "../taskgroup_manager" }
-
